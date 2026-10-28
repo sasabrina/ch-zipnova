@@ -4,11 +4,19 @@ import type { ShipmentStatus } from "../../types";
 export type FiltersState = {
   search: string;
   statuses: ShipmentStatus[];
+  date: string | null; // null = cualquier fecha
 };
+
+export const DEFAULT_STATUSES: ShipmentStatus[] = [
+  "pending",
+  "assigned",
+  "in_transit",
+];
 
 const initialState: FiltersState = {
   search: "",
-  statuses: [],
+  statuses: DEFAULT_STATUSES,
+  date: null,
 };
 
 const filtersSlice = createSlice({
@@ -21,6 +29,10 @@ const filtersSlice = createSlice({
     setStatuses: (state, action: PayloadAction<ShipmentStatus[]>) => {
       state.statuses = action.payload;
     },
+    setDate: (state, action: PayloadAction<string | null>) => {
+      state.date = action.payload;
+    },
+    resetFilters: () => initialState,
   },
 });
 

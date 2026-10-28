@@ -6,6 +6,7 @@ import { setSelectedShipmentId } from './store/ui/uiSlice'
 import { setSearch } from './store/filters/filtersSlice'
 import { selectFilteredShipments } from './store/shipments/shipmentsSelectors'
 import type { Shipment } from './types'
+import { Input } from '@headlessui/react'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -19,11 +20,10 @@ function App() {
 
   const isShipmentSelected = (s: Shipment) => s.id === selectedShipmentId
 
-
   return (
     <div className='flex flex-col h-screen'>
       <div className='flex m-4'>
-        <input className='border' type='search' value={search} placeholder='Search' onChange={e => dispatch(setSearch(e.target.value))} />
+        <Input className='border' type='search' value={search} placeholder='Search' onChange={e => dispatch(setSearch(e.target.value))} />
       </div>
       <div className='flex flex-1 min-h-0'>
         <ul className='w-96 overflow-y-auto'>
