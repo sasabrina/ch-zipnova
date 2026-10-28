@@ -54,3 +54,9 @@ export type Vehicle = {
   capacityKg: number;
   capacityM3: number;
 };
+
+export type SelectOption = {
+  label: string;
+  value: string;
+  filterTerm?: string;
+};
