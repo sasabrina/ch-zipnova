@@ -3,21 +3,28 @@ import './App.css'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { shipmentSelectors } from './store/shipments/shipmentsSlice'
 import { setSelectedShipmentId } from './store/ui/uiSlice'
+import { setSearch } from './store/filters/filtersSlice'
+import { selectFilteredShipments } from './store/shipments/shipmentsSelectors'
 import type { Shipment } from './types'
 
 function App() {
-  const shipments = useAppSelector(shipmentSelectors.selectAll)
-  const selectedShipmentId = useAppSelector(state => state.ui.selectedShipmentId)
   const dispatch = useAppDispatch()
+  const shipments = useAppSelector(selectFilteredShipments)
+  const selectedShipmentId = useAppSelector(state => state.ui.selectedShipmentId)
   const selectedShipment = useAppSelector(state =>
     selectedShipmentId ? shipmentSelectors.selectById(state, selectedShipmentId) : undefined,
   )
+
+  const search = useAppSelector(state => state.filters.search)
 
   const isShipmentSelected = (s: Shipment) => s.id === selectedShipmentId
 
 
   return (
     <div className='flex flex-col h-screen'>
+      <div className='flex m-4'>
+        <input className='border' type='search' value={search} placeholder='Search' onChange={e => dispatch(setSearch(e.target.value))} />
+      </div>
       <div className='flex flex-1 min-h-0'>
         <ul className='w-96 overflow-y-auto'>
           {shipments.map(s => (
@@ -33,31 +40,30 @@ function App() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <>
-            {shipments.map(s => {
-              const isSelected = isShipmentSelected(s)
+          {shipments.map(s => {
+            const isSelected = isShipmentSelected(s)
 
-              return (
-                <CircleMarker
-                  key={s.id}
-                  center={[s.destination.lat, s.destination.lng]}
-                  radius={isSelected ? 11 : 7}
-                  pathOptions={{
-                    color: isSelected ? '#ffffff' : '#000000',  // borde
-                    weight: isSelected ? 3 : 1,
-                    fillColor: '#000000',
-                    fillOpacity: 0.9,
-                  }}
-                  eventHandlers={{
-                    click: () => dispatch(setSelectedShipmentId(s.id)),
-                  }}
-                >
-                  <Popup>
-                    {s.id} - {s.customer} - {s.status}
-                  </Popup>
-                </CircleMarker>
-              )
-            })}</>
+            return (
+              <CircleMarker
+                key={s.id}
+                center={[s.destination.lat, s.destination.lng]}
+                radius={isSelected ? 11 : 7}
+                pathOptions={{
+                  color: isSelected ? '#ffffff' : '#000000',  // borde
+                  weight: isSelected ? 3 : 1,
+                  fillColor: '#000000',
+                  fillOpacity: 0.9,
+                }}
+                eventHandlers={{
+                  click: () => dispatch(setSelectedShipmentId(s.id)),
+                }}
+              >
+                <Popup>
+                  {s.id} - {s.customer} - {s.status}
+                </Popup>
+              </CircleMarker>
+            )
+          })}
         </MapContainer>
       </div>
 
