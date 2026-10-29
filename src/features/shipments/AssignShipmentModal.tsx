@@ -23,7 +23,7 @@ const AssignShipmentModal = ({ shipment, onClose }: AssignShipmentModalProps) =>
             <ShipmentTotal icon='volume' label={formatVolume(totals.volumeM3)} />
           </div>
 
-          <AssignShopmentForm shipment={shipment} onDone={() => console.log('done')} />
+          <AssignShopmentForm shipment={shipment} onDone={onClose} />
         </DialogPanel>
       </div>
     </Dialog>
