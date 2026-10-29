@@ -23,8 +23,13 @@ function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
     shipment.driverId ? driverSelectors.selectById(state, shipment.driverId) : undefined,
   )
 
+  const isSelected = useAppSelector(state => state.ui.selectedShipmentId === shipment.id)
+
   return (
-    <Disclosure as='article' className='overflow-hidden rounded-xl md:max-w-94'>
+    <Disclosure
+      as='article'
+      className={`m-1 overflow-hidden rounded-xl md:max-w-94 ${isSelected ? 'ring-1 ring-accent' : ''}`}
+    >
       <div className={`flex items-center gap-2 bg-surface-02 p-3`}>
         <div className='flex-1'>
           <h3 className='text-base font-medium'>Entrega {shipment.id}</h3>

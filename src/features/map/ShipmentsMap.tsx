@@ -6,6 +6,7 @@ import { setSelectedShipmentId } from '../../store/ui/uiSlice'
 const ShipmentsMap = () => {
   const shipments = useAppSelector(selectFilteredShipments)
   const dispatch = useAppDispatch()
+  const selectedId = useAppSelector(state => state.ui.selectedShipmentId)
 
   return (
     <MapContainer
@@ -19,15 +20,17 @@ const ShipmentsMap = () => {
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
       {shipments.map(s => {
+        const isSelected = s.id === selectedId
+
         return (
           <CircleMarker
             key={s.id}
             center={[s.destination.lat, s.destination.lng]}
-            radius={8}
+            radius={isSelected ? 8 : 6}
             pathOptions={{
-              color: '#000000',
-              weight: 1,
-              fillColor: '#000000',
+              color: isSelected ? '#1bab85' : '#000000',
+              weight: isSelected ? 2 : 1,
+              fillColor: isSelected ? '#14efb6' : '#000000',
               fillOpacity: 0.9,
             }}
             eventHandlers={{
