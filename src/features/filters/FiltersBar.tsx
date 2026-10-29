@@ -2,6 +2,7 @@ import { setHighPriority, setShipmentIds, resetFilters } from '../../store/filte
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { shipmentSelectors } from '../../store/shipments/shipmentsSlice'
 import type { SelectOption } from '../../types'
+import Button from '../../ui/Button/Button'
 import { Checkbox } from '../../ui/Checkbox'
 import { MultiSelect } from '../../ui/Multiselect'
 
@@ -23,9 +24,9 @@ function FiltersBar() {
 
       <Checkbox label='Alta prioridad' checked={highPriority} onChange={value => dispatch(setHighPriority(value))} />
 
-      <button type='button' onClick={() => dispatch(resetFilters())}>
+      <Button variant='secondary' onClick={() => dispatch(resetFilters())}>
         Limpiar filtros
-      </button>
+      </Button>
     </header>
   )
 }

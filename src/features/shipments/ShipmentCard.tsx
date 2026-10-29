@@ -7,6 +7,7 @@ import ShipmentTotal from './ShipmentTotal'
 import { formatPackages, formatValue, formatVolume, formatWeight, getShipmentTotals } from './shipmentUtils'
 import ShipmentPackage from './ShipmentPackage'
 import AssignIcon from '../../ui/icons/AssignIcon'
+import Button from '../../ui/Button/Button'
 
 type ShipmentCardProps = {
   shipment: Shipment
@@ -25,14 +26,14 @@ function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
           <p className='text-xs'>{shipment.trackingNumber}</p>
         </div>
 
-        <button
+        <Button
           className='mr-3 cursor-pointer'
-          type='button'
+          variant='secondary'
           aria-label='Ver en el mapa'
           onClick={() => dispatch(setSelectedShipmentId(shipment.id))}
         >
           <LocateIcon />
-        </button>
+        </Button>
 
         <DisclosureButton aria-label='Ver detalle' className='group size-5'>
           <svg

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import type { SelectOption } from '../../types'
 import MultiSelectOption from './MultiselectOption'
 import { filterOptions, toggleAll } from './multiSelectUtils'
+import Button from '../Button/Button'
 
 type MultiSelectProps = {
   options: SelectOption[]
@@ -40,9 +41,9 @@ const MultiSelect = ({ options, value, label, onChange }: MultiSelectProps) => {
 
             <div className='absolute inset-y-0 right-0 flex items-center gap-1 pr-2'>
               {search && (
-                <button type='button' aria-label='Limpiar búsqueda' onClick={() => setSearch('')}>
+                <Button variant='secondary' aria-label='Limpiar búsqueda' onClick={() => setSearch('')}>
                   ✕
-                </button>
+                </Button>
               )}
               <ComboboxButton ref={buttonRef} className='group'>
                 <svg

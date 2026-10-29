@@ -6,6 +6,7 @@ import type { SelectOption, Shipment } from '../../types'
 import { useForm } from 'react-hook-form'
 import { assignShipment } from '../../store/shipments/shipmentsSlice'
 import { formatVolume, formatWeight, getShipmentTotals } from './shipmentUtils'
+import Button from '../../ui/Button/Button'
 
 type AssignShipmentFormProps = {
   shipment: Shipment
@@ -96,12 +97,12 @@ function AssignShopmentForm({ shipment, onDone }: AssignShipmentFormProps) {
       </Field>
 
       <div className='flex justify-end gap-4'>
-        <button type='button' onClick={onDone}>
+        <Button variant='secondary' onClick={onDone}>
           Cancelar
-        </button>
-        <button type='submit' className='rounded-control bg-accent px-3 py-1.5 text-on-accent'>
+        </Button>
+        <Button type='submit' className='rounded-control bg-accent px-3 py-1.5 text-on-accent'>
           Asignar
-        </button>
+        </Button>
       </div>
     </form>
   )
