@@ -1,5 +1,5 @@
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
-import { useAppDispatch } from '../../store/hooks'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { setSelectedShipmentId } from '../../store/ui/uiSlice'
 import type { Shipment } from '../../types'
 import LocateIcon from '../../ui/icons/LocateIcon'
@@ -8,6 +8,7 @@ import { formatPackages, formatValue, formatVolume, formatWeight, getShipmentTot
 import ShipmentPackage from './ShipmentPackage'
 import AssignIcon from '../../ui/icons/AssignIcon'
 import Button from '../../ui/Button/Button'
+import { driverSelectors } from '../../store/drivers/driversSlice'
 
 type ShipmentCardProps = {
   shipment: Shipment
@@ -17,6 +18,10 @@ type ShipmentCardProps = {
 function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
   const dispatch = useAppDispatch()
   const totals = getShipmentTotals(shipment)
+
+  const driver = useAppSelector(state =>
+    shipment.driverId ? driverSelectors.selectById(state, shipment.driverId) : undefined,
+  )
 
   return (
     <Disclosure as='article' className='max-w-94 overflow-hidden rounded-xl'>
@@ -60,11 +65,13 @@ function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
           <ShipmentPackage key={p.id} pkg={p} />
         ))}
 
-        <div className='mt-2 flex justify-between'>
-          <p className='text-xs text-t-primary'>{`${shipment.status === 'pending' ? 'Sin asignar' : 'Asignado'}`}</p>
-          <button type='button' aria-label='Asignas' onClick={onAssign}>
-            <AssignIcon />
-          </button>
+        <div className='mt-2 flex items-center justify-between'>
+          <p className='text-xs text-t-primary'>{driver ? driver.name : 'Sin asignar'}</p>
+          {shipment.status === 'pending' && (
+            <Button variant='secondary' aria-label='Asignar' onClick={onAssign}>
+              <AssignIcon />
+            </Button>
+          )}
         </div>
       </DisclosurePanel>
     </Disclosure>
