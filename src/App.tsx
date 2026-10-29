@@ -1,17 +1,14 @@
-import { CircleMarker, MapContainer, Popup, TileLayer } from 'react-leaflet'
 import './App.css'
-import MultiSelect from './ui/Multiselect/MultiSelect'
+import ShipmentsMap from './features/map/ShipmentsMap'
 import { setShipmentIds } from './store/filters/filtersSlice'
 import { useAppDispatch, useAppSelector } from './store/hooks'
-import { selectFilteredShipments } from './store/shipments/shipmentsSelectors'
 import { shipmentSelectors } from './store/shipments/shipmentsSlice'
-import { setSelectedShipmentId } from './store/ui/uiSlice'
 import type { SelectOption } from './types'
+import MultiSelect from './ui/Multiselect/MultiSelect'
 
 function App() {
   const dispatch = useAppDispatch()
   const allShipments = useAppSelector(shipmentSelectors.selectAll)
-  const shipments = useAppSelector(selectFilteredShipments)
   const shipmentIds = useAppSelector(state => state.filters.shipmentIds)
 
   const options: SelectOption[] = allShipments.map(s => ({
@@ -34,34 +31,7 @@ function App() {
         </ul>
 
         {/* mapa */}
-        <MapContainer className='h-full w-full flex-1' center={[-34.6, -58.43]} zoom={12} scrollWheelZoom={false}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-          />
-          {shipments.map(s => {
-            return (
-              <CircleMarker
-                key={s.id}
-                center={[s.destination.lat, s.destination.lng]}
-                radius={8}
-                pathOptions={{
-                  color: '#000000', // borde
-                  weight: 1,
-                  fillColor: '#000000',
-                  fillOpacity: 0.9,
-                }}
-                eventHandlers={{
-                  click: () => dispatch(setSelectedShipmentId(s.id)),
-                }}
-              >
-                <Popup>
-                  {s.id} - {s.customer} - {s.status}
-                </Popup>
-              </CircleMarker>
-            )
-          })}
-        </MapContainer>
+        <ShipmentsMap />
       </div>
     </div>
   )
