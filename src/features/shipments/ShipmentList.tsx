@@ -17,7 +17,7 @@ const ShipmentList = () => {
 
   return (
     <>
-      <ul className='flex w-96 flex-col gap-2 overflow-y-auto'>
+      <ul className='flex min-h-0 w-full flex-1 flex-col gap-2 overflow-y-auto md:w-96 md:flex-none'>
         {shipments.map(s => (
           <li key={s.id}>
             <ShipmentCard shipment={s} onAssign={() => handleOpenAssign(s.id)} />
@@ -26,12 +26,7 @@ const ShipmentList = () => {
       </ul>
 
       {assigning && (
-        <AssignShipmentModal
-          key={assigning.id}
-          shipment={assigning}
-          // open={isOpen}
-          onClose={() => setAssigningId(null)}
-        />
+        <AssignShipmentModal key={assigning.id} shipment={assigning} onClose={() => setAssigningId(null)} />
       )}
     </>
   )

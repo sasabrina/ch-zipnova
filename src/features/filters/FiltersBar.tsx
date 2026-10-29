@@ -19,7 +19,7 @@ function FiltersBar() {
   }))
 
   return (
-    <header className='flex items-center gap-4'>
+    <header className='flex flex-wrap items-center gap-x-4 gap-y-2'>
       <MultiSelect options={options} value={shipmentIds} onChange={ids => dispatch(setShipmentIds(ids))} />
 
       <Checkbox label='Alta prioridad' checked={highPriority} onChange={value => dispatch(setHighPriority(value))} />

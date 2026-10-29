@@ -15,7 +15,7 @@ const AssignShipmentModal = ({ shipment, onClose }: AssignShipmentModalProps) =>
   return (
     <Dialog open={true} onClose={onClose} className='relative z-50'>
       <div className='fixed inset-0 flex w-screen items-center justify-center p-4'>
-        <DialogPanel className='max-w-lg space-y-4 rounded-2xl bg-input-default p-4 text-t-primary shadow shadow-fg-subtle'>
+        <DialogPanel className='w-full max-w-lg space-y-4 rounded-2xl bg-input-default p-4 text-t-primary shadow shadow-fg-subtle'>
           <DialogTitle className='font-bold'>Asignar entrega {shipment.id}</DialogTitle>
 
           <div className='flex justify-end gap-2'>

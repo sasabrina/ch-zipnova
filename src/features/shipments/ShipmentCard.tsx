@@ -24,7 +24,7 @@ function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
   )
 
   return (
-    <Disclosure as='article' className='max-w-94 overflow-hidden rounded-xl'>
+    <Disclosure as='article' className='overflow-hidden rounded-xl md:max-w-94'>
       <div className={`flex items-center gap-2 bg-surface-02 p-3`}>
         <div className='flex-1'>
           <h3 className='text-base font-medium'>Entrega {shipment.id}</h3>
@@ -53,7 +53,7 @@ function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
         </DisclosureButton>
       </div>
 
-      <DisclosurePanel className='max-w-94 rounded-b-xl bg-input-default px-3 py-2 text-t-secondary'>
+      <DisclosurePanel className='rounded-b-xl bg-input-default px-3 py-2 text-t-secondary md:max-w-94'>
         <div className='flex justify-between pt-2'>
           <ShipmentTotal icon='weight' label={formatWeight(totals.weightKg)} />
           <ShipmentTotal icon='volume' label={formatVolume(totals.volumeM3)} />
