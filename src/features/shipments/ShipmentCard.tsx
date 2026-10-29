@@ -10,9 +10,10 @@ import AssignIcon from '../../ui/icons/AssignIcon'
 
 type ShipmentCardProps = {
   shipment: Shipment
+  onAssign: () => void
 }
 
-function ShipmentCard({ shipment }: ShipmentCardProps) {
+function ShipmentCard({ shipment, onAssign }: ShipmentCardProps) {
   const dispatch = useAppDispatch()
   const totals = getShipmentTotals(shipment)
 
@@ -60,7 +61,7 @@ function ShipmentCard({ shipment }: ShipmentCardProps) {
 
         <div className='mt-2 flex justify-between'>
           <p className='text-xs text-t-primary'>{`${shipment.status === 'pending' ? 'Sin asignar' : 'Asignado'}`}</p>
-          <button type='button' aria-label='Asignas'>
+          <button type='button' aria-label='Asignas' onClick={onAssign}>
             <AssignIcon />
           </button>
         </div>

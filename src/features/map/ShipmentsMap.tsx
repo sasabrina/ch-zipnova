@@ -8,7 +8,7 @@ const ShipmentsMap = () => {
   const dispatch = useAppDispatch()
 
   return (
-    <MapContainer className='h-full w-full flex-1' center={[-34.6, -58.43]} zoom={12} scrollWheelZoom={false}>
+    <MapContainer className='isolate h-full w-full flex-1' center={[-34.6, -58.43]} zoom={12} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

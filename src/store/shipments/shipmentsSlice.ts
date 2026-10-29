@@ -32,6 +32,7 @@ const shipmentSlice = createSlice({
   },
 })
 
+export const { assignShipment, updateStatus } = shipmentSlice.actions
 export const shipmentSelectors = shipmentsAdapter.getSelectors(
   (state: { shipments: ReturnType<typeof shipmentSlice.reducer> }) => state.shipments,
 )
