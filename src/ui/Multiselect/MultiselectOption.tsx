@@ -1,5 +1,5 @@
 import { ComboboxOption } from '@headlessui/react'
-import CheckboxIcon from './CheckboxIcon'
+import CheckboxIcon from '../Checkbox/CheckboxIcon'
 
 type MultiSelectOptionProps = { value: string; label: string; checked?: boolean; className?: string }
 
@@ -10,7 +10,10 @@ const MultiSelectOption = ({ value, label, checked, className = '' }: MultiSelec
   >
     {({ selected }) => (
       <>
-        <CheckboxIcon checked={checked ?? selected} />
+        <CheckboxIcon
+          checked={checked ?? selected}
+          className={`${(checked ?? selected) ? '' : 'invisible group-data-focus:visible'}`}
+        />
         {label}
       </>
     )}

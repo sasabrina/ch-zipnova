@@ -32,7 +32,7 @@ const MultiSelect = ({ options, value, label, onChange }: MultiSelectProps) => {
             <ComboboxInput
               aria-label={label}
               value={search}
-              placeholder='Search'
+              placeholder='Buscar'
               onChange={e => setSearch(e.target.value)}
               onClick={() => !open && buttonRef.current?.click()}
               className='h-9 w-full rounded-4xl bg-input-default px-4 outline-none placeholder:text-sm focus-visible:ring-1 focus-visible:ring-accent data-open:rounded-t-2xl data-open:rounded-b-none'
@@ -66,10 +66,10 @@ const MultiSelect = ({ options, value, label, onChange }: MultiSelectProps) => {
               <div>No options</div>
             ) : (
               <>
-                <MultiSelectOption className='m-1' value={SELECT_ALL} label='Select all' checked={allSelected} />
+                <MultiSelectOption className='m-1' value={SELECT_ALL} label='Seleccionar todo' checked={allSelected} />
 
                 <div className='max-h-56 overflow-y-auto border-t border-t-divider p-1'>
-                  <p className='my-1 px-2 py-1 text-xs text-t-secondary'>Select some options</p>
+                  <p className='my-1 px-2 py-1 text-xs text-t-secondary'>Selecciona algunas opciones</p>
                   {filteredOptions.map(o => (
                     <MultiSelectOption key={o.value} value={o.value} label={o.label} />
                   ))}

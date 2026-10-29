@@ -1,14 +1,12 @@
-type CheckboxIconProps = {
-  checked: boolean
-}
+type CheckboxIconProps = { checked: boolean; className?: string }
 
-function CheckboxIcon({ checked }: CheckboxIconProps) {
+function CheckboxIcon({ checked, className = '' }: CheckboxIconProps) {
   return (
     <span
       aria-hidden='true'
       className={`flex size-4 shrink-0 items-center justify-center rounded-sm border ${
-        checked ? 'border-accent bg-accent' : 'invisible border-b-primary bg-input-default group-data-focus:visible'
-      }`}
+        checked ? 'border-accent bg-accent' : 'border-b-primary bg-input-default'
+      } ${className}`}
     >
       {checked && (
         <svg viewBox='0 0 12 12' className='size-3 text-on-accent' fill='none' stroke='currentColor' strokeWidth='2'>
