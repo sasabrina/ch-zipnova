@@ -35,7 +35,7 @@ const MultiSelect = ({ options, value, label, onChange }: MultiSelectProps) => {
               placeholder='Search'
               onChange={e => setSearch(e.target.value)}
               onClick={() => !open && buttonRef.current?.click()}
-              className='h-9 w-full rounded-4xl bg-surface-900 px-4 outline-none placeholder:text-sm focus-visible:ring-1 focus-visible:ring-accent data-open:rounded-t-2xl data-open:rounded-b-none'
+              className='h-9 w-full rounded-4xl bg-input-default px-4 outline-none placeholder:text-sm focus-visible:ring-1 focus-visible:ring-accent data-open:rounded-t-2xl data-open:rounded-b-none'
             />
 
             <div className='absolute inset-y-0 right-0 flex items-center gap-1 pr-2'>
@@ -60,17 +60,16 @@ const MultiSelect = ({ options, value, label, onChange }: MultiSelectProps) => {
 
           <ComboboxOptions
             anchor='bottom start'
-            className='z-1000 w-(--input-width) rounded-b-2xl bg-surface-900 p-1 text-sm text-fg shadow-lg'
+            className='z-1000 w-(--input-width) rounded-b-2xl border-t border-t-divider bg-input-default text-sm text-fg shadow-lg'
           >
             {filteredOptions.length === 0 ? (
               <div>No options</div>
             ) : (
               <>
-                <MultiSelectOption value={SELECT_ALL} label='Select all' checked={allSelected} />
+                <MultiSelectOption className='m-1' value={SELECT_ALL} label='Select all' checked={allSelected} />
 
-                <p className='px-2 py-1 text-xs text-t-secondary'>Select some options</p>
-
-                <div className='max-h-56 overflow-y-auto'>
+                <div className='max-h-56 overflow-y-auto border-t border-t-divider p-1'>
+                  <p className='my-1 px-2 py-1 text-xs text-t-secondary'>Select some options</p>
                   {filteredOptions.map(o => (
                     <MultiSelectOption key={o.value} value={o.value} label={o.label} />
                   ))}

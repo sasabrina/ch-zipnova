@@ -12,12 +12,11 @@
   --text-base: 0.8125rem; /* 13px: títulos de card, inputs */
   --text-base--line-height: 1.25rem;
 
+  /* colores */
+
   --color-canvas: #41505b;
-  --color-surface-950: #1b2836;
-  --color-surface-900: #222f3c;
-  --color-surface-800: #2a3744;
-  --color-surface-700: #323f4c;
-  --color-surface-600: #3c4956;
+  --color-surface-02: #2e3e4b;
+  --color-input-default: #233441;
 
   --color-fg: #e8ecef;
   --color-fg-muted: #a7b0b8;
@@ -32,6 +31,8 @@
   --color-on-accent: #10231d;
 
   --color-b-primary: #45545f;
+
+  --color-icon-neutral-secondary: #8b949b;
 
   --radius-control: 6px; /* inputs, botones, filas */
   --radius-card: 8px; /* cards, popovers */

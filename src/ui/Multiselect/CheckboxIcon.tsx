@@ -7,7 +7,7 @@ function CheckboxIcon({ checked }: CheckboxIconProps) {
     <span
       aria-hidden='true'
       className={`flex size-4 shrink-0 items-center justify-center rounded-sm border ${
-        checked ? 'border-accent bg-accent' : 'invisible border-b-primary bg-surface-900 group-data-focus:visible'
+        checked ? 'border-accent bg-accent' : 'invisible border-b-primary bg-input-default group-data-focus:visible'
       }`}
     >
       {checked && (

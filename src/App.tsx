@@ -1,5 +1,6 @@
 import './App.css'
 import ShipmentsMap from './features/map/ShipmentsMap'
+import ShipmentList from './features/shipments/ShipmentList'
 import { setShipmentIds } from './store/filters/filtersSlice'
 import { useAppDispatch, useAppSelector } from './store/hooks'
 import { shipmentSelectors } from './store/shipments/shipmentsSlice'
@@ -22,13 +23,7 @@ function App() {
       <MultiSelect options={options} value={shipmentIds} onChange={ids => dispatch(setShipmentIds(ids))} />
 
       <div className='flex min-h-0 flex-1'>
-        <ul className='w-96 overflow-y-auto'>
-          {/* {shipments.map(s => (
-            <li key={s.id} >
-              <button onClick={() => dispatch(setSelectedShipmentId(s.id))}><span>{s.id} - {s.customer} - {s.status}</span></button>
-            </li>
-          ))} */}
-        </ul>
+        <ShipmentList />
 
         {/* mapa */}
         <ShipmentsMap />
